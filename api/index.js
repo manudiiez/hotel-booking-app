@@ -14,8 +14,8 @@ dotenv.config()
 // CONEXION A MONGODB
 const connect = async ( ) => {
     try {
-        // await mongoose.connect(process.env.MONGO);
-        await mongoose.connect('mongodb://localhost:27017/booking');
+        await mongoose.connect(process.env.MONGO);
+        // await mongoose.connect('mongodb://localhost:27017/booking');
         console.log('Connected to mongoDB')
     } catch (error) {
         throw error;
