@@ -1,6 +1,7 @@
 import express from "express"
 import dotenv from 'dotenv'
 import mongoose from "mongoose"
+import cookieParser from "cookie-parser"
 /* ---------------------------------- RUTAS --------------------------------- */
 import authRoute from './routes/auth.js'
 import usersRoute from './routes/users.js'
@@ -13,7 +14,8 @@ dotenv.config()
 // CONEXION A MONGODB
 const connect = async ( ) => {
     try {
-        await mongoose.connect(process.env.MONGO);
+        // await mongoose.connect(process.env.MONGO);
+        await mongoose.connect('mongodb://localhost:27017/booking');
         console.log('Connected to mongoDB')
     } catch (error) {
         throw error;
@@ -32,6 +34,8 @@ mongoose.connection.on('connected', () => {
 
 // middlewares: son las rutas
 
+// Para usar cookies
+app.use(cookieParser())
 // Para poder usar body (json)
 app.use(express.json())
 
