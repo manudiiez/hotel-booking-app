@@ -1,13 +1,13 @@
 import express from 'express'
+import { login, register } from '../controllers/auth.js'
+/* ----------------------------- ERROR FUNCTION ----------------------------- */
+import { createError } from '../utils/error.js'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.send('Hello, this is auth endpoint')
-})
-
-router.get('/register', (req, res) => {
-    res.send('Hello, this is register endpoint')
-})
+// CREATE
+router.post('/register', register)
+// LOGIN
+router.post('/login', login)
 
 export default router
