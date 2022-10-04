@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from 'dotenv'
 import mongoose from "mongoose"
 import cookieParser from "cookie-parser"
+import cors from 'cors'
 /* ---------------------------------- RUTAS --------------------------------- */
 import authRoute from './routes/auth.js'
 import usersRoute from './routes/users.js'
@@ -34,6 +35,7 @@ mongoose.connection.on('connected', () => {
 
 // middlewares: son las rutas
 
+app.use(cors())
 // Para usar cookies
 app.use(cookieParser())
 // Para poder usar body (json)

@@ -15,6 +15,10 @@ export const register = async(req,res,next) =>{
             password: hash
         })
 
+        const user = await User.findOne({username: req.body.username})
+
+        if(user) return next(createError(404, "That user already exists"))
+
         await newUser.save()
         res.status(200).send('User has been created')
     } catch (err) {
