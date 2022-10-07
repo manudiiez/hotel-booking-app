@@ -10,9 +10,8 @@ export const register = async(req,res,next) =>{
         const hash = bcrypt.hashSync(req.body.password, salt);
 
         const newUser = new User({
-            username: req.body.username,
-            email: req.body.email,
-            password: hash
+            ...req.body,
+            password: hash,
         })
 
         const user = await User.findOne({username: req.body.username})
@@ -42,7 +41,7 @@ export const login = async(req,res,next) =>{
             httpOnly: true
         })
         res.status(200)
-        .json({...otherDetails})
+        .json({details: {...otherDetails}, isAdmin})
     } catch (err) {
         next(err)
     }
